@@ -1,0 +1,22 @@
+<form name="ticketEntity">
+  <mat-form-field>
+    <mat-label>Number</mat-label>
+    <input matInput ng-model="ticket.id">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Subject</mat-label>
+  <input matInput ng-model="ticket.name">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput ng-model="ticket.description"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Priority</mat-label>
+    <mat-select>
+      <mat-option value="1">Low</mat-option>
+      <mat-option value="10">Normal</mat-option>
+      <mat-option value="20">High</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

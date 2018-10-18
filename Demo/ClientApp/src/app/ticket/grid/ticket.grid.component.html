@@ -1,18 +1,19 @@
 <h1>Tickets</h1>
-<div>
+<div class="grid-menu">
     <div class="search-panel">
         <input type="text">
         <button>Search</button>
     </div>
-    <button>Add new ticket</button>
+    <button class="new-item-button">Add new ticket</button>
 </div>
 <ag-grid-angular 
-    style="width: 500px; height: 500px;" 
+    style="height: 500px;" 
     class="ag-theme-balham"
     [rowData]="rowData" 
     [columnDefs]="columnDefs"
     [enableSorting]="true"
     [enableFilter]="true"
     [pagination]="true"
+    (gridReady)="onGridReady($event)"
     >
 </ag-grid-angular>
