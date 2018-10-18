@@ -1,0 +1,18 @@
+<h1>Tickets</h1>
+<div>
+    <div class="search-panel">
+        <input type="text">
+        <button>Search</button>
+    </div>
+    <button>Add new ticket</button>
+</div>
+<ag-grid-angular 
+    style="width: 500px; height: 500px;" 
+    class="ag-theme-balham"
+    [rowData]="rowData" 
+    [columnDefs]="columnDefs"
+    [enableSorting]="true"
+    [enableFilter]="true"
+    [pagination]="true"
+    >
+</ag-grid-angular>

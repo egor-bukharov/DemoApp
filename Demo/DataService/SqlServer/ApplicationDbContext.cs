@@ -1,7 +1,7 @@
-﻿using DemoApp.Models;
+﻿using Demo.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Demo.DataService
+namespace Demo.DataService.SqlServer
 {
     public class ApplicationDbContext : DbContext
     {
@@ -11,5 +11,6 @@ namespace Demo.DataService
         }
 
         public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
     }
 }

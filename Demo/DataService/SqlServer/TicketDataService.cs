@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DemoApp.Controllers;
-using DemoApp.Models;
+using Demo.Models;
 
-namespace Demo.DataService
+namespace Demo.DataService.SqlServer
 {
-    public class TicketsService : ITicketsService
+    public class TicketDataService : ITicketDataService
     {
         private readonly ApplicationDbContext _context;
 
-        public TicketsService(ApplicationDbContext context)
+        public TicketDataService(ApplicationDbContext context)
         {
             _context = context;
         }

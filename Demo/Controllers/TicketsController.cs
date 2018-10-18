@@ -1,35 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using DemoApp.Controllers;
-using DemoApp.Models;
+using Demo.DataService;
+using Demo.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Demo.Controllers
 {
     public class TicketsController : Controller
     {
-        private readonly ITicketsService _ticketsService;
+        private readonly ITicketDataService _ticketDataService;
 
-        public TicketsController(ITicketsService ticketsService)
+        public TicketsController(ITicketDataService ticketDataService)
         {
-            _ticketsService = ticketsService;
+            _ticketDataService = ticketDataService;
         }
 
         [HttpGet]
         [Route("api/Tickets")]
         public IEnumerable<Ticket> GetTickets()
         {
-            return _ticketsService.GetAll();
+            return _ticketDataService.GetAll();
         }
 
         [HttpGet]
         [Route("api/Tickets/New")]
         public Ticket NewTicket()
         {
-            var ticketsCount = _ticketsService.GetAll().Count;
+            var ticketsCount = _ticketDataService.GetAll().Count;
 
             var ticket = new Ticket { Name = "Name" + ticketsCount, Description = "Description" + ticketsCount };
-            _ticketsService.Add(ticket);
+            _ticketDataService.Add(ticket);
 
             return ticket;
         }
@@ -38,7 +38,7 @@ namespace Demo.Controllers
         [Route("api/Tickets/{id}")]
         public IActionResult GetTicket(long id)
         {
-            Ticket ticket = _ticketsService.FindById(id);
+            Ticket ticket = _ticketDataService.FindById(id);
             if (ticket == null)
             {
                 return NotFound();

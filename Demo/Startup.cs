@@ -1,5 +1,5 @@
 using Demo.DataService;
-using DemoApp.Controllers;
+using Demo.DataService.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +32,9 @@ namespace Demo
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<ITicketsService, TicketsService>();
+
+            services.AddScoped<ITicketDataService, TicketDataService>();
+            services.AddScoped<IDepartmentDataService, DepartmentDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
