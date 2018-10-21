@@ -1,5 +1,5 @@
 <form>
-  <input type="checkbox" name="completed"  />
+  <input type="checkbox" name="completed" [(ngModel)]='task.completed' />
   <textarea matInput name="name" placeholder="Enter name" [(ngModel)]='task.name'></textarea>
   <button type="submit" class="btn btn-lg btn-block btn-info">Add</button>
 </form>
