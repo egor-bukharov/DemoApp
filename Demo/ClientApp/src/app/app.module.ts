@@ -4,15 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
-import { MatInputModule, MatOptionModule, MatSelectModule } from "@angular/material";
+import { MatInputModule, MatOptionModule, MatSelectModule, MatButtonModule, MatDialogModule } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { TicketsGridComponent } from './ticket/grid/ticket.grid.component';
-import { TicketFormComponent } from './ticket/form/ticket.form.component';
+import { TaskListComponent } from './task/task-list/task-list.component';
+import { TaskListItemComponent } from './task/task-list-item/task-list-item.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,8 @@ import { TicketFormComponent } from './ticket/form/ticket.form.component';
     NavMenuComponent,
     CounterComponent,
     FetchDataComponent,
-    TicketsGridComponent,
-    TicketFormComponent
+    TaskListComponent,
+    TaskListItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,11 +31,11 @@ import { TicketFormComponent } from './ticket/form/ticket.form.component';
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
+    MatButtonModule,
+    MatDialogModule,
     AgGridModule.withComponents(null),
     RouterModule.forRoot([
-      { path: '', component: TicketsGridComponent, pathMatch: 'full' },
-      { path: 'new', component: TicketFormComponent },
-      { path: 'counter', component: CounterComponent },
+      { path: '', component: CounterComponent, pathMatch: 'full' },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],

@@ -1,5 +1,6 @@
 ﻿using Demo.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Demo.DataService.SqlServer
 {
@@ -11,6 +12,7 @@ namespace Demo.DataService.SqlServer
         }
 
         public virtual DbSet<Ticket> Tickets { get; set; }
-        public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<Task> Tasks { get; set; }
     }
 }

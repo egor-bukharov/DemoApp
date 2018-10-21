@@ -38,7 +38,7 @@ namespace Demo.Controllers
         [Route("api/Tickets/{id}")]
         public IActionResult GetTicket(long id)
         {
-            Ticket ticket = _ticketDataService.FindById(id);
+            var ticket = _ticketDataService.FindById(id);
             if (ticket == null)
             {
                 return NotFound();
@@ -49,12 +49,12 @@ namespace Demo.Controllers
 
         [HttpPut]
         [Route("api/Tickets/{id}")]
-        public IActionResult PutTicket(long id, Ticket ticket)
+        public IActionResult PutTicket(long id, [FromBody] Ticket ticket)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             //if (id != ticket.Id)
             //{
@@ -86,51 +86,21 @@ namespace Demo.Controllers
 
         [HttpPost]
         [Route("api/Tickets")]
-        public IActionResult PostTicket(Ticket ticket)
+        public IActionResult PostTicket([FromBody] Ticket ticket)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            //db.Tickets.Add(ticket);
-
-            //try
-            //{
-            //    db.SaveChanges();
-            //}
-            //catch (DbUpdateException)
-            //{
-            //    if (TicketExists(ticket.Id))
-            //    {
-            //        return Conflict();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-
-            //return CreatedAtRoute("DefaultApi", new { id = ticket.Id }, ticket);
-
-            throw new NotImplementedException();
+            _ticketDataService.Add(ticket);
+            return Ok(ticket);
         }
 
         [HttpDelete]
         [Route("api/Tickets/{id}")]
-        public IActionResult DeleteTicket(Guid id)
+        public IActionResult DeleteTicket(long id)
         {
-            //Ticket ticket = db.Tickets.Find(id);
-            //if (ticket == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //db.Tickets.Remove(ticket);
-            //db.SaveChanges();
-
-            //return Ok(ticket);
-
             throw new NotImplementedException();
         }
     }

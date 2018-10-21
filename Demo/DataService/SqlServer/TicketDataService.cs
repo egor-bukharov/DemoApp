@@ -15,7 +15,6 @@ namespace Demo.DataService.SqlServer
 
         public IList<Ticket> GetAll()
         {
-            
             return _context.Tickets
                 .OrderBy(ticket => ticket.Name)
                 .ToList();

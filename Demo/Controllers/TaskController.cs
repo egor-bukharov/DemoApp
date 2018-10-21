@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Demo.DataService;
-using Demo.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,34 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace Demo.Controllers
 {
     [Route("api/[controller]")]
-    public class DepartmentsController : Controller
+    public class TaskController : Controller
     {
-        private readonly IDepartmentDataService _departmentDataService;
+        private readonly ITaskDataService _taskDataService;
 
-        public DepartmentsController(IDepartmentDataService departmentDataService)
+        public TaskController(ITaskDataService taskDataService)
         {
-            _departmentDataService = departmentDataService;
+            _taskDataService = taskDataService;
         }
 
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<Department> GetAll()
+        public IList<Models.Task> Get()
         {
-            return _departmentDataService.GetAll();
-        }
-
-        [HttpGet("new")]
-        public Department CreateNew()
-        {
-            var random = new Random();
-            var department = new Department
-            {
-                Name = "Name " + random.Next(),
-                Description = "Description " + random.Next()
-            };
-
-            _departmentDataService.Add(department);
-            return department;
+            return _taskDataService.GetAll();
         }
 
         // GET api/<controller>/5
