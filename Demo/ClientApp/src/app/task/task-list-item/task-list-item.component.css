@@ -1,0 +1,23 @@
+.task-list-item {
+    display: flex;
+    min-width: 200px;
+}
+
+.task-list-item .field-completed {
+    width: 20px;
+    margin: 3px;
+}
+
+.task-list-item .field-name {
+    display: inline;
+    margin: 3px;
+    flex: 1;
+}
+
+.task-list-item .submit-button {
+    width: 60px;
+    margin: 3px;
+    height: 30px;
+}
+
+
