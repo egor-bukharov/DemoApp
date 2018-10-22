@@ -1,65 +1,22 @@
-li .glyphicon {
-    margin-right: 10px;
-}
-
-li a {
-    background-color: #eee;
-}
-
-li a:hover,
-li a:focus {
-    background-color: #c2c2ff;
-}
-/* Highlighting rules for nav menu items */
-li.link-active a,
-li.link-active a:hover,
-li.link-active a:focus {
-    
-    background-color: #66629c;
-    color: white;
-}
-
-/* Keep the nav menu independent of scrolling and on top of other items */
 .main-nav {
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    background-color: #4189C7;
+    display: flex;
+
+    padding: 3px;
+    margin: 3px;
 }
 
-.main-nav ul li
-{
-    float: left;
+.main-nav .title {
+    width: 50px;
+    height: 35px;
 }
 
-.main-nav .nav-title
-{
-    float: left;
+.main-nav .navbar {
+    list-style: none;
+    margin: 3px;
+    padding: 0;
 }
 
-.nav-title
-{
-    width: 15%;
-    padding: 10px 15px;
-    font-size: large;
-    color: white;
-    min-width: 75px;
-}
-
-.search-panel
-{
-    float: right;
-    margin: 5px;
-}
-
-.search-panel input
-{
-    width: 300px;
-    line-height: 32px;
-}
-
-.search-panel button
-{
-    background-color: #eee;
+.main-nav li {
+    margin: 0 3px;
+    padding: 0;
 }

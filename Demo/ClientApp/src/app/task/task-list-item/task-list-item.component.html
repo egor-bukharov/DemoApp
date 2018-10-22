@@ -1,5 +1,30 @@
 <form class='task-list-item'>
-  <input type="checkbox" name="completed" [(ngModel)]='task.completed' class='field-completed' />
-  <textarea matInput name="name" placeholder="Enter name" [(ngModel)]='task.name' class="field-name"></textarea>
-  <button type="submit" class="btn btn-lg btn-block btn-info" class="btn-default submit-button" style="visibility: hidden">Save</button>
+  <div class='line small-view'>
+      <input type='checkbox' name='completed' [(ngModel)]='task.completed' class='field-completed' />
+      <textarea matInput name='name' placeholder='Enter name' [(ngModel)]='task.name' class='field-name'></textarea>
+      <button type='submit' class='submit button'>Save</button>
+      <span class='expand button' (click)='toggleDetails()'>&gt;</span>
+  </div>
+
+  <div class='details-view' [style.display]="showDetails ? 'block' : 'none'">
+  <!-- <div class='details-view' *ngIf="showDetails"> -->
+    <div class='line'>
+      <mat-form-field class='description'>
+        <textarea matInput name='description' placeholder='Enter description' class='text'></textarea>
+      </mat-form-field>
+    </div>
+    <div class='line'>
+        <mat-form-field class='due date'>
+          <input matInput [matDatepicker]='picker_due_date' placeholder='Due date' name='daueDate'>
+          <mat-datepicker-toggle matSuffix [for]='picker_due_date'></mat-datepicker-toggle>
+          <mat-datepicker #picker_due_date></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class='completed date'>
+          <input matInput [matDatepicker]='picker_completed_date' placeholder='Completed date' name='daueDate'>
+          <mat-datepicker-toggle matSuffix [for]='picker_completed_date'></mat-datepicker-toggle>
+          <mat-datepicker #picker_completed_date></mat-datepicker>
+        </mat-form-field>
+    </div>
+  </div>
 </form>

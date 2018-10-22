@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskListItemComponent } from './task-list-item.component';
-import { MatInputModule } from '@angular/material';
+import { MatInputModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TaskListItemComponent', () => {
   let component: TaskListItemComponent;
@@ -12,7 +12,13 @@ describe('TaskListItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TaskListItemComponent ],
-      imports: [MatInputModule, FormsModule]
+      imports: [
+        MatInputModule, 
+        FormsModule, 
+        MatDatepickerModule, 
+        MatNativeDateModule, 
+        NoopAnimationsModule
+      ]
     })
     .compileComponents();
   }));

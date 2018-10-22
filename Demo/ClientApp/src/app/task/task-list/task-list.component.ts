@@ -11,7 +11,10 @@ export class TaskListComponent implements OnInit {
 
   constructor(private taskService: TaskService) { }
 
-  public tasks = [{ name: "TODO1", completed: true }, { name: "TODO2", completed: false }];
+  public tasks = [
+    { name: "TODO1", completed: true }, 
+    // { name: "TODO2", completed: false }
+  ];
 
   ngOnInit() {
   }

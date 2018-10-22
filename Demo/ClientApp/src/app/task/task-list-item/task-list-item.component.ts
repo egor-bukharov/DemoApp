@@ -10,6 +10,11 @@ import { ITaskListItem } from '../../data/task';
 export class TaskListItemComponent implements OnInit {
 
   @Input() task: ITaskListItem = {};
+  @Input() showDetails: boolean = false;
+
+  public toggleDetails = () => {
+    this.showDetails = !this.showDetails;
+  };
 
   constructor() { }
 

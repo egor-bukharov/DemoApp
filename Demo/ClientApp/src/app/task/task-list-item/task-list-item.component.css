@@ -1,11 +1,45 @@
 .task-list-item {
+    min-width: 300px;
+    outline: 3px;
+    border-radius: 3px;
+    border: 1px solid #7782bd;
+    margin: 3px;
+    background-color: #ece8fafa;
+    box-shadow: 0 2px 1px -1px #00000033,0 1px 1px 0 #00000024,0 1px 3px 0 #0000001f;
+}
+
+.task-list-item .button {
     display: flex;
+    overflow: hidden;
+
+    background: #3c59ff;
+    border-radius: 2px;
+    border: 1px solid #000e5a;
+    text-align: center;
+    color: #fff;
+    margin: 3px;
+}
+
+.task-list-item .date {
+    min-width: 100px;
+    max-width: 250px;
+    margin: 3px;
+}
+
+.task-list-item .line {
+    display: flex;
+}
+
+.task-list-item .small-view {
     min-width: 200px;
+    margin: 3px;
 }
 
 .task-list-item .field-completed {
     width: 20px;
+    height:20px;
     margin: 3px;
+    padding: 0;
 }
 
 .task-list-item .field-name {
@@ -14,10 +48,41 @@
     flex: 1;
 }
 
-.task-list-item .submit-button {
+.task-list-item .submit {
     width: 60px;
-    margin: 3px;
     height: 30px;
+}
+
+.task-list-item .expand {
+    width: 20px;
+    height: 30px;
+    margin: 3px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.task-list-item .details-view {
+    margin: 3px 3px 3px 16px;
+    background-color: #ece8fafa;
+}
+
+.task-list-item .details-view .line {
+    margin: 3px 95px 3px 17px;
+}
+
+.task-list-item .description
+{
+    flex: 1;
+}
+
+.task-list-item .description .text
+{
+    height: 200px;
+}
+
+.task-list-item .due,.completed
+{
+    flex: 1;
 }
 
 

@@ -5,6 +5,8 @@ import { TaskListItemComponent } from '../task-list-item/task-list-item.componen
 import { TaskService } from '../../data-service/task.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
+import { MatDatepickerModule, MatNativeDateModule, MatInputModule } from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TaskListComponent', () => {
   let component: TaskListComponent;
@@ -15,7 +17,14 @@ describe('TaskListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TaskListComponent, TaskListItemComponent ],
-      imports: [HttpClientTestingModule, FormsModule],
+      imports: [
+        HttpClientTestingModule, 
+        FormsModule, 
+        MatInputModule, 
+        MatDatepickerModule, 
+        MatNativeDateModule,
+        NoopAnimationsModule
+      ],
       providers: [TaskService, { provide: 'BASE_URL', useFactory: () => { return baseUrl }, deps: [] }]
     })
     .compileComponents();

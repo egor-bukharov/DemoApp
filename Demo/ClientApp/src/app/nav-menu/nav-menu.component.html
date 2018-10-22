@@ -1,15 +1,10 @@
 <div class='main-nav'>
-    <span class='nav-title'>Helpdesk</span>
-    <ul class='nav navbar-nav'>
+    <span class='title'>TODO</span>
+    <ul class='navbar'>
         <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
             <a [routerLink]='["/"]' (click)='collapse()'>
                 <span class='glyphicon glyphicon-th-list'></span> Tickets
             </a>
         </li>
     </ul>
-    <form class="search-panel">
-        <input mdInput type="text" name="searchString">
-        <button mat-raised-button class="glyphicon glyphicon-plus">Search</button>
-    </form>
-    <div style="clear:both"></div>
 </div>

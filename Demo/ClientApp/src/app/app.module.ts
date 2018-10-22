@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { AgGridModule } from 'ag-grid-angular';
-import { MatInputModule, MatOptionModule, MatSelectModule, MatButtonModule, MatDialogModule } from "@angular/material";
+import { MatInputModule, MatDatepickerModule, MatNativeDateModule } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -29,13 +28,10 @@ import { TaskListItemComponent } from './task/task-list-item/task-list-item.comp
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatDialogModule,
-    AgGridModule.withComponents(null),
+    MatDatepickerModule,
+    MatNativeDateModule,
     RouterModule.forRoot([
-      { path: '', component: CounterComponent, pathMatch: 'full' },
+      { path: '', component: TaskListComponent, pathMatch: 'full' },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],

@@ -11,8 +11,6 @@ namespace Demo.DataService.SqlServer
             
         }
 
-        public virtual DbSet<Ticket> Tickets { get; set; }
-        public virtual DbSet<State> States { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
     }
 }
