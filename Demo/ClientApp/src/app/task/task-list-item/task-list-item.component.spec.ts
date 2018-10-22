@@ -32,4 +32,30 @@ describe('TaskListItemComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('showDetails', () => {
+    it('should be false by default', () => {
+      expect(component.showDetails).toBe(false);
+    })
+  });
+
+  describe('toggleDetails', () => {
+    it('should inverse showDetails value', () => {
+      component.showDetails = false;
+      
+      component.toggleDetails();
+      expect(component.showDetails).toBe(true);
+
+      component.toggleDetails();
+      expect(component.showDetails).toBe(false);
+
+      component.showDetails = true;
+      component.toggleDetails();
+      expect(component.showDetails).toBe(false);
+
+      component.toggleDetails();
+      expect(component.showDetails).toBe(true);
+    });
+  })
+  
 });

@@ -17,17 +17,19 @@ describe('TaskService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should call http.get method with args', async () => {
-    const service: TaskService = TestBed.get(TaskService);
-    const http: HttpTestingController = TestBed.get(HttpTestingController);
-
-    const getAllPromise = service.getAll();
-
-    const itemsRequest = http.expectOne(baseUrl + 'api/task');
-    itemsRequest.flush([{id: 1, name: "name"}]);
-
-    http.verify();
-
-    await getAllPromise;
-  })
+  describe('getAll', () => {
+    it('should call http.get method', async () => {
+      const service: TaskService = TestBed.get(TaskService);
+      const http: HttpTestingController = TestBed.get(HttpTestingController);
+  
+      const getAllPromise = service.getAll();
+  
+      const itemsRequest = http.expectOne(baseUrl + 'api/task');
+      itemsRequest.flush([{id: 1, name: "name"}]);
+  
+      http.verify();
+  
+      await getAllPromise;
+    });
+  });
 });
