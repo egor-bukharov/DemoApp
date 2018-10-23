@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ITaskListItem } from '../../data/task';
+import { ITask } from '../../data/task';
+import { TaskService } from '../../data-service/task.service';
 
 
 @Component({
@@ -9,14 +10,18 @@ import { ITaskListItem } from '../../data/task';
 })
 export class TaskListItemComponent implements OnInit {
 
-  @Input() task: ITaskListItem = {};
+  @Input() task: ITask = {};
   @Input() showDetails: boolean = false;
 
   public toggleDetails = () => {
     this.showDetails = !this.showDetails;
   };
 
-  constructor() { }
+  public submit = async () => {
+    this.task = await this.taskDataService.edit(this.task);
+  };
+
+  constructor(private taskDataService: TaskService) { }
 
   ngOnInit() {
   }

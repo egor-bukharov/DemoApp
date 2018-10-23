@@ -12,11 +12,17 @@ namespace Demo.UnitTests
     [TestClass]
     public class TaskControllerUnitTests
     {
+        private Mock<ITaskDataService> _taskDataService;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _taskDataService = new Mock<ITaskDataService>();
+        }
+
         [TestMethod]
         public void GetAllMethodShouldReturnAllRecords()
         {
-            var taskDataService = new Mock<ITaskDataService>();
-
             var random = new Random();
             var tasksCount = random.Next(10, 100);
 
@@ -28,16 +34,42 @@ namespace Demo.UnitTests
                 expectedItems.Add(item);
             }
 
-            taskDataService.Setup(service => service.GetAll()).Returns(expectedItems);
+            _taskDataService.Setup(service => service.GetAll()).Returns(expectedItems);
 
-            var controller = new TaskController(taskDataService.Object);
-            var actualItems = controller.Get();
+            var actualItems = CreateController().Get();
 
             Assert.AreEqual(expectedItems.Count, actualItems.Count);
             for (var i = 0; i < tasksCount; i++)
             {
-                Assert.AreEqual(expectedItems[i].Name, actualItems[i].Name);
+                Assert.AreSame(expectedItems[i], actualItems[i]);
             }
+        }
+
+        
+
+        [TestMethod]
+        public void AddMethodShouldSaveTask()
+        {
+            var dataToSend = new Task
+            {
+                Name = "Name"
+            };
+
+            var dataToBeReceived = new Task
+            {
+                Id = Guid.NewGuid(),
+                Name = "Name"
+            };
+
+            _taskDataService.Setup(service => service.Add(dataToSend)).Returns(dataToBeReceived);
+
+            var createdTask = CreateController().Post(dataToSend);
+            Assert.AreSame(dataToBeReceived, createdTask);
+        }
+
+        private TaskController CreateController()
+        {
+            return new TaskController(_taskDataService.Object);
         }
     }
 }

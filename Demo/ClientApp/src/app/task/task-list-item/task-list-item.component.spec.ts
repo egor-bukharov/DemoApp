@@ -4,8 +4,12 @@ import { TaskListItemComponent } from './task-list-item.component';
 import { MatInputModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TaskService } from '../../data-service/task.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TaskListItemComponent', () => {
+  const baseUrl = "http://base.url"
+
   let component: TaskListItemComponent;
   let fixture: ComponentFixture<TaskListItemComponent>;
 
@@ -17,8 +21,10 @@ describe('TaskListItemComponent', () => {
         FormsModule, 
         MatDatepickerModule, 
         MatNativeDateModule, 
-        NoopAnimationsModule
-      ]
+        NoopAnimationsModule,
+        HttpClientTestingModule
+      ],
+      providers: [TaskService, { provide: 'BASE_URL', useFactory: () => { return baseUrl }, deps: [] }]
     })
     .compileComponents();
   }));
@@ -56,6 +62,5 @@ describe('TaskListItemComponent', () => {
       component.toggleDetails();
       expect(component.showDetails).toBe(true);
     });
-  })
-  
+  });
 });

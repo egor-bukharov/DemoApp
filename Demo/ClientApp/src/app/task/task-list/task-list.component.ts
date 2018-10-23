@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../data-service/task.service';
+import { ITask } from '../../data/task';
 
 @Component({
   selector: 'task-list',
@@ -11,12 +12,9 @@ export class TaskListComponent implements OnInit {
 
   constructor(private taskService: TaskService) { }
 
-  public tasks = [
-    { name: "TODO1", completed: true }, 
-    // { name: "TODO2", completed: false }
-  ];
+  public tasks: ITask[] = [];
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.tasks = await this.taskService.getAll();
   }
-
 }
