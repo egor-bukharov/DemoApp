@@ -7,15 +7,19 @@ export class TaskService {
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-  public getAll : () => Promise<ITask[]> = () => {
-    return this.http.get<ITask[]>(this.baseUrl + 'api/task').toPromise();
+  public getAll(): Promise<ITask[]> {
+    return this.http.get<ITask[]>(this.getEndpointUrl()).toPromise();
   };
 
-  public add: (task: ITask) => Promise<ITask> = (task: ITask) => {
+  public add(task: ITask): Promise<ITask> {
     return this.http.post<ITask>(this.baseUrl + 'api/task', task).toPromise();
   };
 
-  public edit: (task: ITask) => Promise<ITask> = (task: ITask) => {
+  public edit(task: ITask): Promise<ITask> {
     return this.http.put<ITask>(this.baseUrl + 'api/task', task).toPromise();
+  };
+
+  private getEndpointUrl(): string {
+    return this.baseUrl + 'api/task';
   };
 }

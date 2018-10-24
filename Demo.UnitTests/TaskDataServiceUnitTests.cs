@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Transactions;
 using Demo.DataService.SqlServer;
 using Demo.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Razor.Language.Extensions;
+using Demo.UnitTests.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -68,8 +65,8 @@ namespace Demo.UnitTests
         [TestMethod]
         public void AddMethodShouldSaveTheRecord()
         {
-            const string expectedName = "Name";
-            const string expectedDescription = "Description";
+            var expectedName = RandomTaskFieldValue.Name();
+            var expectedDescription = RandomTaskFieldValue.Description();
             var expectedCreatedAt = new DateTime();
 
             var task = new Task
@@ -97,8 +94,8 @@ namespace Demo.UnitTests
         {
             var previousRecord = new Task
             {
-                Name = "Name1",
-                Description = "Desc1",
+                Name = RandomTaskFieldValue.Name(),
+                Description = RandomTaskFieldValue.Description(),
                 Completed = false,
                 CreatedAt = DateTime.Now
             };
@@ -108,8 +105,8 @@ namespace Demo.UnitTests
             var recordId = previousRecord.Id;
             Assert.AreNotEqual(Guid.Empty, recordId);
 
-            const string expectedName = "Name2";
-            const string expectedDescription = "Description2";
+            var expectedName = RandomTaskFieldValue.Name();
+            var expectedDescription = RandomTaskFieldValue.Description();
             const bool expectedCompleted = true;
             var expectedCompletedAt = DateTime.Now;
 

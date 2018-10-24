@@ -13,17 +13,21 @@ export class TaskListItemComponent implements OnInit {
   @Input() task: ITask = {};
   @Input() showDetails: boolean = false;
 
-  public toggleDetails = () => {
+  constructor(private taskDataService: TaskService) { }
+
+  public ngOnInit() {};
+
+  public isNewRecord() : boolean {
+    return !this.task.id || this.task.id.length == 0;
+  };
+
+  public toggleDetails() {
     this.showDetails = !this.showDetails;
   };
 
-  public submit = async () => {
-    this.task = await this.taskDataService.edit(this.task);
+  public async submit() {
+    this.task = this.isNewRecord()
+      ? await this.taskDataService.add(this.task) 
+      : await this.taskDataService.edit(this.task);
   };
-
-  constructor(private taskDataService: TaskService) { }
-
-  ngOnInit() {
-  }
-
 }

@@ -39,9 +39,9 @@ namespace Demo.Controllers
             return _taskDataService.Add(task);
         }
 
-        public void Put([FromBody] Task task)
+        public Task Put([FromBody] Task task)
         {
-
+            return _taskDataService.Edit(task);
         }
 
         // DELETE api/<controller>/5

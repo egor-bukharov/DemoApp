@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Demo.Controllers;
 using Demo.DataService;
 using Demo.Models;
+using Demo.UnitTests.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -23,20 +23,19 @@ namespace Demo.UnitTests
         [TestMethod]
         public void GetAllMethodShouldReturnAllRecords()
         {
-            var random = new Random();
-            var tasksCount = random.Next(10, 100);
+            var tasksCount = RandomValue.Integer(10, 100);
 
             var expectedItems = new List<Task>(tasksCount);
 
             for (var i = 0; i < tasksCount; i++)
             {
-                var item = new Task { Name = "Name" + random.Next() };
+                var item = new Task { Name = RandomTaskFieldValue.Name() };
                 expectedItems.Add(item);
             }
 
             _taskDataService.Setup(service => service.GetAll()).Returns(expectedItems);
 
-            var actualItems = CreateController().Get();
+            var actualItems = CreateControllerInstance().Get();
 
             Assert.AreEqual(expectedItems.Count, actualItems.Count);
             for (var i = 0; i < tasksCount; i++)
@@ -45,29 +44,44 @@ namespace Demo.UnitTests
             }
         }
 
-        
 
         [TestMethod]
-        public void AddMethodShouldSaveTask()
+        public void PostMethodShouldDelegateToTaskDataService()
         {
             var dataToSend = new Task
             {
-                Name = "Name"
+                Name = RandomTaskFieldValue.Name()
             };
+
+            var expectedId = Guid.NewGuid();
+            var expectedName = RandomTaskFieldValue.Name();
 
             var dataToBeReceived = new Task
             {
-                Id = Guid.NewGuid(),
-                Name = "Name"
+                Id = expectedId,
+                Name = expectedName
             };
 
             _taskDataService.Setup(service => service.Add(dataToSend)).Returns(dataToBeReceived);
 
-            var createdTask = CreateController().Post(dataToSend);
+            var createdTask = CreateControllerInstance().Post(dataToSend);
             Assert.AreSame(dataToBeReceived, createdTask);
+
+            Assert.AreEqual(expectedId, createdTask.Id);
+            Assert.AreEqual(expectedName, createdTask.Name);
         }
 
-        private TaskController CreateController()
+        [TestMethod]
+        public void PutMethodShouldDelegateToTaskDataService()
+        {
+            var dataToSend = new Task();
+
+            CreateControllerInstance().Put(dataToSend);
+
+            _taskDataService.Verify(service => service.Edit(dataToSend));
+        }
+
+        private TaskController CreateControllerInstance()
         {
             return new TaskController(_taskDataService.Object);
         }

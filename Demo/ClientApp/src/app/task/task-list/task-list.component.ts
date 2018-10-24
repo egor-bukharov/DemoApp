@@ -14,7 +14,8 @@ export class TaskListComponent implements OnInit {
 
   public tasks: ITask[] = [];
 
-  async ngOnInit() {
+  public async ngOnInit() {
+    debugger;
     this.tasks = await this.taskService.getAll();
-  }
+  };
 }

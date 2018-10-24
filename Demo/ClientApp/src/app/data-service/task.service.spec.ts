@@ -61,7 +61,6 @@ describe('TaskService', () => {
 
       const data = await addPromise;
       expect(data).toBe(dataToBeReceived);
-      //expect(data).toBe(dataToSend);
     });
   });
 
@@ -80,6 +79,7 @@ describe('TaskService', () => {
       request.flush(dataToBeRecevied);
 
       const result = await editPromise;
+      expect(result).toBe(dataToBeRecevied);
     });
   });
 });

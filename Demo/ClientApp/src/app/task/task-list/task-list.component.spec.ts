@@ -11,6 +11,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 describe('TaskListComponent', () => {
   let component: TaskListComponent;
   let fixture: ComponentFixture<TaskListComponent>;
+  let taskService: TaskService;
 
   const baseUrl = "http://base.url/";
 
@@ -25,7 +26,10 @@ describe('TaskListComponent', () => {
         MatNativeDateModule,
         NoopAnimationsModule
       ],
-      providers: [TaskService, { provide: 'BASE_URL', useFactory: () => { return baseUrl }, deps: [] }]
+      providers: [
+        TaskService, 
+        { provide: 'BASE_URL', useFactory: () => { return baseUrl }, deps: [] }
+      ]
     })
     .compileComponents();
   }));
@@ -38,5 +42,19 @@ describe('TaskListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('ngOnInit', () => {
+    it('should call TaskService.getAll()', async () => {
+      const taskService: TaskService = TestBed.get(TaskService);
+      spyOn(taskService, 'getAll').and.returnValue([
+        { id: 'id', name: 'name' }
+      ]);
+
+      const component = new TaskListComponent(taskService);
+      await component.ngOnInit();
+
+      expect(taskService.getAll).toHaveBeenCalledWith();
+    });
   });
 });
