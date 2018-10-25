@@ -6,7 +6,6 @@ import { ITask } from '../../data/task';
   selector: 'task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css'],
-  providers: [TaskService]
 })
 export class TaskListComponent implements OnInit {
 
@@ -15,7 +14,6 @@ export class TaskListComponent implements OnInit {
   public tasks: ITask[] = [];
 
   public async ngOnInit() {
-    debugger;
     this.tasks = await this.taskService.getAll();
   };
 }
